@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0a0a0f">
+<meta name="description" content="Project details — part of the DP-Archives digital ecosystem.">
+<title>Project — DP-Archives</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Fragment+Mono&display=swap" rel="stylesheet">
+<style>
+  html{font-family:'Plus Jakarta Sans',system-ui,sans-serif;color-scheme:dark;-webkit-tap-highlight-color:transparent}
+  body{touch-action:manipulation}
+  .grain{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E")}
+  h1,h2,h3{text-wrap:balance}
+  .card{transition:transform .2s ease,opacity .2s ease,border-color .2s ease}
+  @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}.card{transition:none}}
+</style>
+</head>
+<body class="bg-[#0a0a0f] text-zinc-100 antialiased">
+<a href="#detail" class="sr-only focus:not-sr-only focus:absolute focus:z-[60] focus:top-3 focus:left-3 focus:px-4 focus:py-2 focus:rounded-lg focus:bg-white focus:text-black">Skip to content</a>
+<div class="fixed inset-0 -z-10 grain" aria-hidden="true"></div>
+
+<header class="sticky top-0 z-40 backdrop-blur-xl bg-[#0a0a0f]/70 border-b border-white/5">
+  <div class="max-w-[1200px] mx-auto px-6 h-16 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400/70">
+      <span class="w-9 h-9 rounded-xl bg-white p-1.5 flex items-center justify-center">
+        <img src="logo.png" width="36" height="36" class="w-full h-full object-contain" alt="DP-Archives logo">
+      </span>
+      <span>
+        <span class="block font-semibold leading-none" translate="no">DP-Archives</span>
+        <span class="block text-xs text-zinc-400 mt-0.5" translate="no">Digital Headquarters</span>
+      </span>
+    </a>
+    <nav class="text-sm text-zinc-300" aria-label="Primary">
+      <a href="index.html#projects" class="px-3 py-2 rounded-lg hover:text-white hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400/70 transition-colors">Projects</a>
+    </nav>
+  </div>
+</header>
+
+<main id="detail" class="pt-6"></main>
+
+<footer class="border-t border-white/5">
+  <div class="max-w-[1200px] mx-auto px-6 py-8 text-sm text-zinc-500 flex flex-wrap items-center justify-between gap-3">
+    <p>© 2026 <span translate="no">DP-Archives</span> — Built with curiosity</p>
+    <p class="font-mono text-xs" translate="no">SYSTEM STATUS: OPERATIONAL</p>
+  </div>
+</footer>
+
+<script src="projects.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

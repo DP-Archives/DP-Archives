@@ -1,0 +1,21 @@
+# ---- OS / editor junk ----
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# ---- logs ----
+*.log
+npm-debug.log*
+
+# ---- local preview / tooling (not part of the live site) ----
+.vercel/
+node_modules/
+package-lock.json
+*.local
+
+# ---- unused Next.js scaffold, kept out of the published repo ----
+.next/
+out/
+dist/

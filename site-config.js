@@ -1,0 +1,10 @@
+// DP-Archives — site configuration (edit freely)
+window.DP_SITE = {
+  name: 'DP-Archives',
+  role: 'Digital Headquarters',
+  tagline: 'Central hub for my websites, tools, experiments and digital projects.',
+  about: "I'm a builder. This headquarters consolidates every website, tool and experiment released under one roof. Visitors get a clean, fast way to discover and open each project.",
+  feedbackUrl: '',
+  copyright: '© 2026 DP-Archives — Built with curiosity',
+  statusLabel: 'SYSTEM STATUS: OPERATIONAL'
+};
