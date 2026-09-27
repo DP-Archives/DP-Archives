@@ -4,11 +4,11 @@
    protected. For real auth, migrate to Supabase/Next.js (see tutorial s.12). */
 
 // ======== SETTINGS ========
-var ADMIN_PASSWORD_HASH = '617febf4e89ebaa753f1efba25ccbcb59ea3e7b0bbcc90154baae3e83c1dc5a4';
+var ADMIN_PASSWORD_HASH = '7add4b5cb8a533318fbbbbb80dfb49bf208cba1e0f3408c3b7e453fb3ab74c4e';
 // dp-admin-2026  <- default password. To change it, open admin.html in a browser,
 // press F12 -> Console, run: (await crypto.subtle.digest('SHA-256', new TextEncoder().encode('YOUR-NEW-PASSWORD'))).hex
 // ...actually simpler: run this in the console:
-//   crypto.subtle.digest('SHA-256', new TextEncoder().encode('YOUR-NEW-PASSWORD')).then(b=>console.log([...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')))
+//   crypto.subtle.digest('SHA-256', new TextEncoder().encode('Your_New_Password')).then(b=>console.log([...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')))
 // then paste the printed hash here and update the tutorial.
 var SESSION_KEY = 'dp_admin_session';
 // =========================
