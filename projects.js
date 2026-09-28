@@ -78,12 +78,14 @@ window.DP_PROJECTS = [
     "tagline": "Build Better. Pitch Stronger.",
     "description": "A collaborative guide for teams participating in competitions such as pitch decks and business challenges, focusing on effective teamwork, role distribution, idea development, presentation, and coordination.",
     "category": "Business",
-    "status": "In Development",
+    "status": "Live",
     "tech": [],
     "featured": false,
     "updated": "2026-09-27",
-    "url": "",
+    "url": "https://commerce-forge.vercel.app",
     "github": "",
+    "preview": "",
+    "features": [],
     "accent": "#f59e0b"
   },
   {
@@ -110,7 +112,7 @@ window.DP_PROJECTS = [
     "tech": [],
     "featured": false,
     "updated": "2026-09-27",
-    "url": "https:///diplomat-desk.vercel.app",
+    "url": "https://diplomat-desk.vercel.app",
     "github": "",
     "accent": "#3b82f6"
   }

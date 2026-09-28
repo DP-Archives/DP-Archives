@@ -1,55 +1,175 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#0a0a0f">
-<meta name="description" content="Project details — part of the DP-Archives digital ecosystem.">
+<meta name="theme-color" content="#06060b">
+<meta name="description" content="Project details and live preview — part of the DP-Archives digital headquarters.">
 <title>Project — DP-Archives</title>
+<meta property="og:type" content="article">
+<meta property="og:title" content="Project — DP-Archives">
+<meta property="og:description" content="Project details and live preview — part of the DP-Archives digital headquarters.">
+<meta property="og:image" content="logo.png">
+<link rel="icon" href="logo.png">
+
+<script>
+  document.documentElement.classList.add('js');
+  try {
+    var t = localStorage.getItem('dp_theme');
+    if (!t) t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  } catch (e) {}
+</script>
+
 <script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+          display: ['Sora', 'system-ui', 'sans-serif'],
+          mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace']
+        }
+      }
+    }
+  };
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Fragment+Mono&display=swap" rel="stylesheet">
-<style>
-  html{font-family:'Plus Jakarta Sans',system-ui,sans-serif;color-scheme:dark;-webkit-tap-highlight-color:transparent}
-  body{touch-action:manipulation}
-  .grain{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E")}
-  h1,h2,h3{text-wrap:balance}
-  .card{transition:transform .2s ease,opacity .2s ease,border-color .2s ease}
-  @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}.card{transition:none}}
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="theme.css">
 </head>
-<body class="bg-[#0a0a0f] text-zinc-100 antialiased">
-<a href="#detail" class="sr-only focus:not-sr-only focus:absolute focus:z-[60] focus:top-3 focus:left-3 focus:px-4 focus:py-2 focus:rounded-lg focus:bg-white focus:text-black">Skip to content</a>
-<div class="fixed inset-0 -z-10 grain" aria-hidden="true"></div>
+<body class="antialiased">
 
-<header class="sticky top-0 z-40 backdrop-blur-xl bg-[#0a0a0f]/70 border-b border-white/5">
-  <div class="max-w-[1200px] mx-auto px-6 h-16 flex items-center justify-between">
-    <a href="index.html" class="flex items-center gap-3 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400/70">
-      <span class="w-9 h-9 rounded-xl bg-white p-1.5 flex items-center justify-center">
-        <img src="logo.png" width="36" height="36" class="w-full h-full object-contain" alt="DP-Archives logo">
+<a class="skip" href="#detail">Skip to project details</a>
+
+<div class="bg-layer" aria-hidden="true">
+  <div class="bg-grid"></div>
+  <div class="bg-blob b1"></div>
+  <div class="bg-blob b2"></div>
+  <div class="bg-blob b3"></div>
+  <div class="bg-noise"></div>
+  <div class="bg-vignette"></div>
+</div>
+
+<header class="site-header">
+  <div class="mx-auto max-w-[1240px] px-5 sm:px-8 h-16 flex items-center gap-3">
+    <a href="index.html" class="flex items-center gap-3 shrink-0 group" aria-label="DP-Archives home">
+      <span class="w-9 h-9 rounded-xl bg-white p-1.5 grid place-items-center ring-1 ring-black/10 transition-transform duration-500 group-hover:rotate-3">
+        <img src="logo.png" width="36" height="36" class="w-full h-full object-contain" alt="">
       </span>
-      <span>
-        <span class="block font-semibold leading-none" translate="no">DP-Archives</span>
-        <span class="block text-xs text-zinc-400 mt-0.5" translate="no">Digital Headquarters</span>
+      <span class="leading-none">
+        <span class="block font-semibold tracking-tight" translate="no">DP-Archives</span>
+        <span class="block text-[11px] t-dim mt-1" translate="no">Digital Headquarters</span>
       </span>
     </a>
-    <nav class="text-sm text-zinc-300" aria-label="Primary">
-      <a href="index.html#projects" class="px-3 py-2 rounded-lg hover:text-white hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400/70 transition-colors">Projects</a>
+
+    <nav class="ml-4 hidden md:flex items-center gap-0.5" aria-label="Primary">
+      <a class="nav-link" href="index.html#featured">Featured</a>
+      <a class="nav-link" href="index.html#projects">Projects</a>
+      <a class="nav-link" href="index.html#about">About</a>
     </nav>
+
+    <div class="ml-auto flex items-center gap-2">
+      <button id="paletteBtn" type="button" class="field hidden sm:flex !py-2 !px-3 cursor-text" aria-haspopup="dialog" aria-keyshortcuts="k">
+        <svg class="icon t-dim" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <span class="t-dim text-[13px] pr-3">Search the archive</span>
+        <span class="kbd" data-mod>Ctrl</span><span class="kbd">K</span>
+      </button>
+      <button id="themeBtn" type="button" class="btn btn-ghost btn-icon" aria-label="Switch colour theme" title="Switch theme">
+        <svg class="icon-lg icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+      </button>
+      <a href="index.html#projects" class="btn btn-ghost btn-sm md:hidden">Archive</a>
+    </div>
   </div>
+  <div id="progress" class="progress" role="presentation"></div>
 </header>
 
-<main id="detail" class="pt-6"></main>
+<main id="detail" class="pt-8">
+  <div class="mx-auto max-w-[1240px] px-5 sm:px-8">
+    <div class="skeleton rounded-full h-4 w-40 mb-10"></div>
+    <div class="grid lg:grid-cols-[1.25fr_.75fr] gap-10">
+      <div class="space-y-5">
+        <div class="skeleton rounded-2xl h-14 w-3/5"></div>
+        <div class="skeleton rounded-xl h-5 w-4/5"></div>
+        <div class="skeleton rounded-xl h-5 w-2/3"></div>
+        <div class="skeleton rounded-[20px] aspect-[16/10] w-full mt-6"></div>
+      </div>
+      <div class="space-y-4">
+        <div class="skeleton rounded-2xl h-40 w-full"></div>
+        <div class="skeleton rounded-2xl h-56 w-full"></div>
+      </div>
+    </div>
+  </div>
+</main>
 
-<footer class="border-t border-white/5">
-  <div class="max-w-[1200px] mx-auto px-6 py-8 text-sm text-zinc-500 flex flex-wrap items-center justify-between gap-3">
-    <p>© 2026 <span translate="no">DP-Archives</span> — Built with curiosity</p>
-    <p class="font-mono text-xs" translate="no">SYSTEM STATUS: OPERATIONAL</p>
+<footer class="site-footer mt-24">
+  <div class="mx-auto max-w-[1240px] px-5 sm:px-8 py-12 grid gap-10 md:grid-cols-[1.5fr_1fr_1fr]">
+    <div>
+      <a href="index.html" class="flex items-center gap-3" aria-label="DP-Archives home">
+        <span class="w-9 h-9 rounded-xl bg-white p-1.5 grid place-items-center ring-1 ring-black/10">
+          <img src="logo.png" width="36" height="36" class="w-full h-full object-contain" alt="">
+        </span>
+        <span class="leading-none">
+          <span class="block font-semibold tracking-tight" translate="no">DP-Archives</span>
+          <span class="block text-[11px] t-dim mt-1" translate="no">Digital Headquarters</span>
+        </span>
+      </a>
+      <p class="t-soft text-sm mt-5 max-w-sm" id="footerTagline">One address for every website, tool and experiment I have built.</p>
+    </div>
+    <nav aria-label="Archive">
+      <p class="eyebrow">Archive</p>
+      <ul class="mt-4 space-y-2.5 text-sm t-soft">
+        <li><a class="link-u" href="index.html#featured">Featured</a></li>
+        <li><a class="link-u" href="index.html#projects">All projects</a></li>
+        <li><a class="link-u" href="index.html#ecosystem">Ecosystem</a></li>
+        <li><a class="link-u" href="index.html#about">About</a></li>
+        <li><a class="link-u" href="index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div>
+      <p class="eyebrow">Elsewhere</p>
+      <ul id="footerSocials" class="mt-4 space-y-2.5 text-sm t-soft"></ul>
+      <button id="toTop" type="button" class="btn btn-ghost btn-sm mt-5">
+        Back to top
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="hair-top">
+    <div class="mx-auto max-w-[1240px] px-5 sm:px-8 py-6 flex flex-wrap items-center justify-between gap-3 mono text-[11px] t-dim">
+      <span id="siteCopyright">© 2026 DP-Archives</span>
+      <span id="siteStatus">SYSTEM STATUS: OPERATIONAL</span>
+    </div>
   </div>
 </footer>
 
+<dialog id="palette" class="dlg" aria-label="Command palette">
+  <div class="dlg-panel">
+    <div class="p-3 hair-bot">
+      <label class="field !bg-transparent" for="paletteInput">
+        <svg class="icon t-dim" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="paletteInput" type="text" autocomplete="off" spellcheck="false" placeholder="Search projects, sections and actions…" role="combobox" aria-expanded="true" aria-controls="paletteList" aria-autocomplete="list" aria-label="Search">
+        <span class="kbd">Esc</span>
+      </label>
+    </div>
+    <ul id="paletteList" class="max-h-[54vh] overflow-auto p-2" role="listbox" aria-label="Results"></ul>
+    <div class="hair-top px-4 py-3 flex items-center justify-between gap-3 mono text-[11px] t-dim">
+      <span><span class="kbd">↑</span> <span class="kbd">↓</span> move · <span class="kbd">↵</span> open · <span class="kbd">Esc</span> close</span>
+      <span id="paletteCount"></span>
+    </div>
+  </div>
+</dialog>
+
+<dialog id="quickLook" class="dlg" aria-label="Project preview">
+  <div class="dlg-panel dlg-panel-lg" id="quickLookBody"></div>
+</dialog>
+
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
 <script src="projects.js"></script>
+<script src="site-config.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

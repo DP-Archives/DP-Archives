@@ -146,6 +146,8 @@ function openModal(slug) {
   $('fTech').value = p ? (p.tech || []).join(', ') : '';
   $('fUrl').value = p ? p.url : '';
   $('fGithub').value = p ? p.github : '';
+  $('fPreview').value = p && p.preview ? p.preview : '';
+  $('fFeatures').value = p && Array.isArray(p.features) ? p.features.join('\n') : '';
   $('fUpdated').value = p ? p.updated : new Date().toISOString().slice(0, 10);
   $('fAccent').value = p && p.accent ? p.accent : '#60a5fa';
   $('fFeatured').checked = p ? !!p.featured : false;
@@ -186,6 +188,8 @@ $('projForm').addEventListener('submit', function (e) {
     updated: $('fUpdated').value || new Date().toISOString().slice(0, 10),
     url: $('fUrl').value.trim(),
     github: $('fGithub').value.trim(),
+    preview: $('fPreview').value.trim(),
+    features: $('fFeatures').value.split('\n').map(function (s) { return s.trim(); }).filter(Boolean),
     accent: $('fAccent').value
   };
   if (editingSlug !== 'NEW') {

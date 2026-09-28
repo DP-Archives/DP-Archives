@@ -5,6 +5,14 @@ window.DP_SITE = {
   "tagline": "Central hub for my websites, tools, experiments and digital projects.",
   "about": "I'm a builder. This headquarters consolidates every website, tool and experiment released under one roof. Visitors get a clean, fast way to discover and open each project.",
   "feedbackUrl": "",
-  "copyright": "© 2026 DP-Archives — Built with curiosity",
-  "statusLabel": "SYSTEM STATUS: OPERATIONAL"
+  "copyright": "© 2026 Devang Parekh — Built with curiosity",
+  "statusLabel": "SYSTEM STATUS: OPERATIONAL",
+  "heroStatus": "Digital ecosystem online",
+  "email": "",
+  "socials": [
+    {
+      "label": "GitHub",
+      "url": "https://github.com/DP-Archives"
+    }
+  ]
 };

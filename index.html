@@ -1,109 +1,364 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#0a0a0f">
-<meta name="description" content="DP-Archives — the central hub for every website, tool and experiment. One place. Everything built.">
-<title>DP-Archives — Digital Headquarters</title>
+<meta name="theme-color" content="#06060b">
+<meta name="description" content="DP-Archives — the digital headquarters. One address for every website, tool and experiment I have built, with live previews and one-click access.">
+<title>DP-Archives — One address for everything I build</title>
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="DP-Archives — One address for everything I build">
+<meta property="og:description" content="The digital headquarters: every website, tool and experiment in one place, with live previews.">
+<meta property="og:image" content="logo.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="DP-Archives — One address for everything I build">
+<meta name="twitter:description" content="The digital headquarters: every website, tool and experiment in one place, with live previews.">
+<meta name="twitter:image" content="logo.png">
+<link rel="icon" href="logo.png">
+
+<script>
+  // Applied before first paint: JS flag + saved theme (no flash of the wrong theme).
+  document.documentElement.classList.add('js');
+  try {
+    var t = localStorage.getItem('dp_theme');
+    if (!t) t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  } catch (e) {}
+</script>
+
 <script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+          display: ['Sora', 'system-ui', 'sans-serif'],
+          mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace']
+        }
+      }
+    }
+  };
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Fragment+Mono&display=swap" rel="stylesheet">
-<style>
-  html{font-family:'Plus Jakarta Sans',system-ui,sans-serif;color-scheme:dark;-webkit-tap-highlight-color:transparent}
-  body{touch-action:manipulation}
-  .grain{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E")}
-  [id]{scroll-margin-top:96px}
-  h1,h2,h3{text-wrap:balance}
-  .card{transition:transform .2s ease,opacity .2s ease,border-color .2s ease}
-  @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}.card,.animate-pulse{transition:none;animation:none}}
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="theme.css">
 </head>
-<body class="bg-[#0a0a0f] text-zinc-100 antialiased">
-<a href="#projects" class="sr-only focus:not-sr-only focus:absolute focus:z-[60] focus:top-3 focus:left-3 focus:px-4 focus:py-2 focus:rounded-lg focus:bg-white focus:text-black">Skip to projects</a>
-<div class="fixed inset-0 -z-10 grain" aria-hidden="true"></div>
+<body class="antialiased">
 
-<header class="sticky top-0 z-40 backdrop-blur-xl bg-[#0a0a0f]/70 border-b border-white/5">
-  <div class="max-w-[1200px] mx-auto px-6 h-16 flex items-center justify-between">
-    <a href="index.html" class="flex items-center gap-3 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400/70">
-      <span class="w-9 h-9 rounded-xl bg-white p-1.5 flex items-center justify-center">
-        <img src="logo.png" width="36" height="36" class="w-full h-full object-contain" alt="DP-Archives logo">
+<a class="skip" href="#projects">Skip to the project archive</a>
+
+<div class="bg-layer" aria-hidden="true">
+  <div class="bg-grid"></div>
+  <div class="bg-blob b1"></div>
+  <div class="bg-blob b2"></div>
+  <div class="bg-blob b3"></div>
+  <div class="bg-noise"></div>
+  <div class="bg-vignette"></div>
+</div>
+
+<header class="site-header">
+  <div class="mx-auto max-w-[1240px] px-5 sm:px-8 h-16 flex items-center gap-3">
+    <a href="index.html" class="flex items-center gap-3 shrink-0 group" aria-label="DP-Archives home">
+      <span class="w-9 h-9 rounded-xl bg-white p-1.5 grid place-items-center ring-1 ring-black/10 transition-transform duration-500 group-hover:rotate-3">
+        <img src="logo.png" width="36" height="36" class="w-full h-full object-contain" alt="">
       </span>
-      <span>
-        <span class="block font-semibold leading-none" translate="no">DP-Archives</span>
-        <span class="block text-xs text-zinc-400 mt-0.5" translate="no">Digital Headquarters</span>
+      <span class="leading-none">
+        <span class="block font-semibold tracking-tight" translate="no">DP-Archives</span>
+        <span class="block text-[11px] t-dim mt-1" translate="no">Digital Headquarters</span>
       </span>
     </a>
-    <nav class="flex gap-1 sm:gap-2 text-sm text-zinc-300" aria-label="Primary">
-      <a href="#projects" class="px-3 py-2 rounded-lg hover:text-white hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400/70 transition-colors">Projects</a>
-      <a href="#about" class="px-3 py-2 rounded-lg hover:text-white hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400/70 transition-colors">About</a>
+
+    <nav class="ml-4 hidden md:flex items-center gap-0.5" aria-label="Primary">
+      <a class="nav-link" href="#featured">Featured</a>
+      <a class="nav-link" href="#projects">Projects</a>
+      <a class="nav-link" href="#ecosystem">Ecosystem</a>
+      <a class="nav-link" href="#about">About</a>
+      <a class="nav-link" href="#contact">Contact</a>
     </nav>
+
+    <div class="ml-auto flex items-center gap-2">
+      <button id="paletteBtn" type="button" class="field hidden sm:flex !py-2 !px-3 cursor-text" aria-haspopup="dialog" aria-keyshortcuts="k">
+        <svg class="icon t-dim" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <span class="t-dim text-[13px] pr-3">Search the archive</span>
+        <span class="kbd" data-mod>Ctrl</span><span class="kbd">K</span>
+      </button>
+      <button id="themeBtn" type="button" class="btn btn-ghost btn-icon" aria-label="Switch colour theme" title="Switch theme">
+        <svg class="icon-lg icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+      </button>
+      <button id="menuBtn" type="button" class="btn btn-ghost btn-icon md:hidden" aria-label="Open menu" aria-expanded="false" aria-controls="mobileSheet">
+        <svg class="icon-lg icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
   </div>
+  <div id="progress" class="progress" role="presentation"></div>
 </header>
 
+<div id="mobileSheet" class="sheet md:hidden" role="dialog" aria-modal="true" aria-label="Menu">
+  <div class="sheet-bg" data-close-sheet></div>
+  <div class="sheet-panel">
+    <div class="flex items-center justify-between mb-4">
+      <span class="eyebrow">Navigate</span>
+      <button type="button" class="btn btn-ghost btn-icon" data-close-sheet aria-label="Close menu">
+        <svg class="icon-lg icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+    <button type="button" class="field w-full mb-4" data-open-palette>
+      <svg class="icon t-dim" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <span class="t-dim text-[14px]">Search projects…</span>
+    </button>
+    <nav class="grid gap-1 text-[17px] font-medium" aria-label="Mobile">
+      <a class="px-3 py-3 rounded-xl hover:bg-[color:var(--panel)]" href="#featured" data-close-sheet>Featured</a>
+      <a class="px-3 py-3 rounded-xl hover:bg-[color:var(--panel)]" href="#projects" data-close-sheet>Projects</a>
+      <a class="px-3 py-3 rounded-xl hover:bg-[color:var(--panel)]" href="#ecosystem" data-close-sheet>Ecosystem</a>
+      <a class="px-3 py-3 rounded-xl hover:bg-[color:var(--panel)]" href="#about" data-close-sheet>About</a>
+      <a class="px-3 py-3 rounded-xl hover:bg-[color:var(--panel)]" href="#contact" data-close-sheet>Contact</a>
+    </nav>
+  </div>
+</div>
+
 <main>
-<section class="max-w-[1200px] mx-auto px-6 pt-20 md:pt-28 pb-16">
-  <p class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 text-xs font-mono mb-6" translate="no">
-    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" aria-hidden="true"></span>
-    DIGITAL ECOSYSTEM ONLINE
-  </p>
-  <h1 class="text-[clamp(40px,7vw,80px)] font-bold leading-[0.95] tracking-tight">One place.<br>Everything I&rsquo;ve<br>built.</h1>
-  <p class="mt-6 text-lg text-zinc-300 max-w-xl"><span id="siteTagline">Central hub for my websites, tools, experiments and digital projects.</span> Pick a project to see what it does and open it live.</p>
-  <div class="mt-8 flex flex-wrap gap-3">
-    <a href="#projects" class="px-5 py-3 rounded-xl bg-white text-black font-medium hover:bg-zinc-200 active:bg-zinc-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 transition-colors">Explore Projects</a>
-    <a href="#about" class="px-5 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 active:bg-white/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400/70 transition-colors">About</a>
+<section class="mx-auto max-w-[1240px] px-5 sm:px-8 pt-14 md:pt-20 pb-12">
+  <div class="grid lg:grid-cols-[1.02fr_.98fr] gap-12 xl:gap-16 items-center">
+    <div>
+      <p class="status-pill reveal">
+        <span class="dot dot-pulse" style="--dot:var(--ok)"></span>
+        <span id="heroStatus">Digital ecosystem online</span>
+      </p>
+
+      <h1 class="h1 mt-7 reveal" data-d="1">One address for<br><span class="grad-text">everything I build</span>.</h1>
+
+      <p class="lede mt-6 max-w-xl reveal" data-d="2">
+        <span id="heroTagline">Central hub for my websites, tools, experiments and digital projects.</span>
+        <span class="t-dim"> Every build lives here, previewable before you open it.</span>
+      </p>
+
+      <div class="mt-9 flex flex-wrap items-center gap-3 reveal" data-d="3">
+        <a href="#projects" class="btn btn-primary btn-lg">
+          Explore the archive
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="#about" class="btn btn-ghost btn-lg">About me</a>
+        <button type="button" class="btn btn-quiet btn-lg" data-open-palette>
+          <span class="kbd" data-mod>Ctrl</span><span class="kbd">K</span>
+          <span class="t-soft">quick search</span>
+        </button>
+      </div>
+
+      <dl id="heroStats" class="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-x-6 gap-y-6 reveal" data-d="4"></dl>
+    </div>
+
+    <div id="heroStack" class="relative min-h-[320px] sm:min-h-[440px] reveal" data-d="2" aria-label="Live previews of featured projects"></div>
   </div>
 </section>
 
-<section id="projects" class="max-w-[1200px] mx-auto px-6 pb-24">
-  <div class="flex items-end justify-between gap-4 mb-8 flex-wrap">
-    <h2 class="text-3xl font-semibold">Project Ecosystem</h2>
-    <div class="flex gap-2 w-full sm:w-auto">
-      <div class="relative flex-1 sm:w-64">
-        <label for="search" class="sr-only">Search projects</label>
-        <input id="search" name="q" type="search" autocomplete="off" placeholder="e.g. Aegis…"
-               class="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-sm placeholder-zinc-500 hover:bg-white/10 focus:bg-white/10 focus:outline-none focus:ring-2 focus:ring-violet-400/70 transition-colors">
-      </div>
-      <div class="relative">
-        <label for="category" class="sr-only">Filter by category</label>
-        <select id="category" name="category"
-                class="appearance-none px-4 py-2.5 pr-9 rounded-xl bg-white/5 border border-white/10 text-sm text-zinc-200 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-violet-400/70 cursor-pointer transition-colors">
-          <option value="all">All categories</option>
+<section class="hair-top hair-bot py-5" aria-label="Technologies used across the archive">
+  <div class="mx-auto max-w-[1240px] px-5 sm:px-8 flex items-center gap-6">
+    <span class="eyebrow hidden sm:block shrink-0">Built with</span>
+    <div class="marquee flex-1 min-w-0">
+      <div id="techMarquee" class="marquee-track"></div>
+    </div>
+  </div>
+</section>
+
+<section id="featured" class="mx-auto max-w-[1240px] px-5 sm:px-8 pt-20 pb-4">
+  <div class="flex flex-wrap items-end justify-between gap-5 mb-8">
+    <div class="reveal">
+      <p class="eyebrow">Featured</p>
+      <h2 class="h2 mt-3">The flagship builds</h2>
+      <p class="lede mt-3 max-w-xl">The projects I would show first — with a live preview baked into every card.</p>
+    </div>
+    <a href="#projects" class="btn btn-ghost reveal" data-d="1">
+      See the full archive
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+  <div id="featuredGrid" class="grid lg:grid-cols-2 gap-6"></div>
+  <p id="featuredEmpty" class="hidden t-dim text-sm mono">No featured projects yet — flag one in the admin panel to feature it here.</p>
+</section>
+<section id="projects" class="mx-auto max-w-[1240px] px-5 sm:px-8 py-20">
+  <div class="flex flex-wrap items-end justify-between gap-5 mb-7 reveal">
+    <div>
+      <p class="eyebrow">Full archive</p>
+      <h2 class="h2 mt-3">Every project, one shelf</h2>
+    </div>
+    <p class="mono text-xs t-dim" id="archiveCount" aria-hidden="true"></p>
+  </div>
+
+  <div class="panel p-4 sm:p-5 reveal" data-d="1">
+    <div class="flex flex-col lg:flex-row gap-3">
+      <label class="field flex-1" for="search">
+        <svg class="icon t-dim" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="search" name="q" type="search" autocomplete="off" placeholder="Search by name, tagline, stack or category…" aria-label="Search projects">
+        <span class="kbd hidden sm:inline-grid">/</span>
+      </label>
+      <div class="flex gap-3">
+        <label class="sr-only" for="sort">Sort projects</label>
+        <select id="sort" class="select flex-1 lg:flex-none">
+          <option value="featured">Sort — featured first</option>
+          <option value="updated">Sort — recently updated</option>
+          <option value="az">Sort — name A to Z</option>
+          <option value="category">Sort — category</option>
         </select>
-        <svg class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.06l3.71-3.83a.75.75 0 111.08 1.04l-4.25 4.39a.75.75 0 01-1.08 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
       </div>
     </div>
+    <div class="mt-4 flex items-center gap-3">
+      <div id="catChips" class="scroll-x flex-1" role="group" aria-label="Filter projects"></div>
+      <button id="resetFilters" type="button" class="btn btn-quiet btn-sm hidden shrink-0">Reset</button>
+    </div>
   </div>
 
-  <div id="featured" class="grid lg:grid-cols-2 gap-5 mb-6"></div>
-  <div id="grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+  <p id="resultMeta" class="mt-5 mono text-xs t-dim" aria-live="polite"></p>
 
-  <div id="empty" class="hidden py-16 text-center">
-    <p class="text-zinc-300 font-medium">No projects match your search.</p>
-    <p class="text-sm text-zinc-500 mt-1">Try a different keyword or category.</p>
-    <button id="clearFilters" class="mt-5 px-4 py-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400/70 transition-colors text-sm">Clear Filters</button>
+  <div id="grid" class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+
+  <div id="empty" class="hidden panel mt-6 p-12 text-center">
+    <p class="h3">Nothing matches that yet.</p>
+    <p class="t-soft mt-2 text-sm">Try another keyword, or clear the filters to see everything.</p>
+    <button id="clearFilters" type="button" class="btn btn-ghost mt-6">Clear filters</button>
   </div>
-
-  <p id="resultMeta" class="mt-6 text-xs font-mono text-zinc-500" aria-live="polite"></p>
 </section>
 
-<section id="about" class="max-w-[1200px] mx-auto px-6 pb-24">
-  <div class="p-[1px] rounded-3xl bg-gradient-to-b from-white/10 to-white/5">
-    <div class="rounded-[22px] bg-zinc-950/60 p-10">
-      <h3 class="text-2xl font-semibold" id="siteAboutTitle">About DP-Archives</h3>
-      <p class="text-zinc-300 mt-3 max-w-2xl" id="siteAbout">I&rsquo;m a builder. This headquarters consolidates every website, tool and experiment released under one roof. Visitors get a clean, fast way to discover and open each project — and each project has its own detail page with context, stack and status.</p>
+<section id="ecosystem" class="mx-auto max-w-[1240px] px-5 sm:px-8 py-20">
+  <div class="reveal">
+    <p class="eyebrow">Ecosystem</p>
+    <h2 class="h2 mt-3">The archive at a glance</h2>
+    <p class="lede mt-3 max-w-xl">Every number below is calculated live from the project data — nothing is hand-written, so it can never drift.</p>
+  </div>
+  <div id="statCards" class="mt-9 grid grid-cols-2 lg:grid-cols-4 gap-5"></div>
+  <div class="mt-6 grid lg:grid-cols-2 gap-5">
+    <div class="panel p-6 sm:p-7">
+      <h3 class="h3">Categories</h3>
+      <div id="catBars" class="mt-6 space-y-4"></div>
     </div>
+    <div class="panel p-6 sm:p-7">
+      <h3 class="h3">Build status</h3>
+      <div id="statusBars" class="mt-6 space-y-4"></div>
+      <p id="lastUpdated" class="mono text-[11px] t-dim mt-6"></p>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="mx-auto max-w-[1240px] px-5 sm:px-8 py-20">
+  <div class="grid lg:grid-cols-[.95fr_1.05fr] gap-10 xl:gap-14 items-start">
+    <div class="reveal">
+      <p class="eyebrow">About me</p>
+      <h2 class="h2 mt-3">Built with curiosity,<br class="hidden sm:block"> shipped in public.</h2>
+      <p class="lede mt-5" id="siteAbout">I&rsquo;m a builder. This headquarters consolidates every website, tool and experiment released under one roof.</p>
+      <div id="focusChips" class="mt-6 flex flex-wrap gap-2"></div>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="#projects" class="btn btn-ghost">Browse the archive</a>
+        <a id="siteFeedback" href="#" class="btn btn-quiet" rel="noopener">Send feedback</a>
+      </div>
+    </div>
+
+    <div class="grid sm:grid-cols-2 gap-5">
+      <article class="panel spot p-6 reveal" data-d="1">
+        <span class="tile w-11 h-11 text-lg" style="color:var(--accent);background:var(--accent-soft)">W</span>
+        <h3 class="h3 mt-4">Websites &amp; tools</h3>
+        <p class="t-soft text-sm mt-2 leading-relaxed">Interfaces people can actually use — fast, keyboard-friendly, readable on a phone and on a 4K screen.</p>
+      </article>
+      <article class="panel spot p-6 reveal" data-d="2">
+        <span class="tile w-11 h-11 text-lg" style="color:#22d3ee;background:rgba(34,211,238,.12)">L</span>
+        <h3 class="h3 mt-4">Local-first thinking</h3>
+        <p class="t-soft text-sm mt-2 leading-relaxed">Where it matters, the data stays on your machine — desktop tools that work without an account.</p>
+      </article>
+      <article class="panel spot p-6 reveal" data-d="3">
+        <span class="tile w-11 h-11 text-lg" style="color:#f472b6;background:rgba(244,114,182,.12)">A</span>
+        <h3 class="h3 mt-4">Assistive AI</h3>
+        <p class="t-soft text-sm mt-2 leading-relaxed">Assistants wired to real models and used for real tasks — context help, not novelty.</p>
+      </article>
+      <article class="panel p-6 reveal" data-d="4" id="currentlyCard">
+        <span class="tile w-11 h-11 text-lg" style="color:var(--ok);background:rgba(52,211,153,.12)">N</span>
+        <h3 class="h3 mt-4">Currently</h3>
+        <p class="t-soft text-sm mt-2 leading-relaxed" id="currentlyText">Building, refining and shipping.</p>
+      </article>
+    </div>
+  </div>
+</section>
+<section id="contact" class="mx-auto max-w-[1240px] px-5 sm:px-8 pb-24">
+  <div class="panel relative overflow-hidden p-8 sm:p-12 reveal">
+    <div class="absolute -top-28 -right-20 w-[22rem] h-[22rem] rounded-full pointer-events-none" style="background:radial-gradient(circle,var(--accent-soft),transparent 65%)" aria-hidden="true"></div>
+    <p class="eyebrow">Contact</p>
+    <h2 class="h2 mt-3 max-w-2xl">Found a bug? Want something built like this?</h2>
+    <p class="lede mt-4 max-w-xl">The archive keeps growing. If something is broken, missing, or you simply want to talk shop — the door is open.</p>
+    <div id="socialRow" class="mt-8 flex flex-wrap gap-3"></div>
+    <p class="mono text-[11px] t-dim mt-9 leading-relaxed">
+      <span class="kbd" data-mod>Ctrl</span> <span class="kbd">K</span> command palette ·
+      <span class="kbd">/</span> jump to search ·
+      <span class="kbd">?</span> shortcuts ·
+      <span class="kbd">G</span> then <span class="kbd">T</span> back to top
+    </p>
   </div>
 </section>
 </main>
 
-<footer class="border-t border-white/5">
-  <div class="max-w-[1200px] mx-auto px-6 py-8 text-sm text-zinc-500 flex flex-wrap items-center justify-between gap-3">
-    <p id="siteCopyright">© 2026 <span translate="no">DP-Archives</span> — Built with curiosity</p>
-    <p class="font-mono text-xs" translate="no" id="siteStatus">SYSTEM STATUS: OPERATIONAL</p>
+<footer class="site-footer">
+  <div class="mx-auto max-w-[1240px] px-5 sm:px-8 py-14 grid gap-10 md:grid-cols-[1.5fr_1fr_1fr]">
+    <div>
+      <a href="index.html" class="flex items-center gap-3" aria-label="DP-Archives home">
+        <span class="w-9 h-9 rounded-xl bg-white p-1.5 grid place-items-center ring-1 ring-black/10">
+          <img src="logo.png" width="36" height="36" class="w-full h-full object-contain" alt="">
+        </span>
+        <span class="leading-none">
+          <span class="block font-semibold tracking-tight" translate="no">DP-Archives</span>
+          <span class="block text-[11px] t-dim mt-1" translate="no">Digital Headquarters</span>
+        </span>
+      </a>
+      <p class="t-soft text-sm mt-5 max-w-sm" id="footerTagline">One address for every website, tool and experiment I have built.</p>
+      <p class="mono text-[11px] t-dim mt-5">Handcrafted with HTML, CSS and vanilla JS — no build step, no framework.</p>
+    </div>
+    <nav aria-label="Archive">
+      <p class="eyebrow">Archive</p>
+      <ul class="mt-4 space-y-2.5 text-sm t-soft">
+        <li><a class="link-u" href="#featured">Featured</a></li>
+        <li><a class="link-u" href="#projects">All projects</a></li>
+        <li><a class="link-u" href="#ecosystem">Ecosystem</a></li>
+        <li><a class="link-u" href="#about">About</a></li>
+        <li><a class="link-u" href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div>
+      <p class="eyebrow">Elsewhere</p>
+      <ul id="footerSocials" class="mt-4 space-y-2.5 text-sm t-soft"></ul>
+      <button id="toTop" type="button" class="btn btn-ghost btn-sm mt-5">
+        Back to top
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="hair-top">
+    <div class="mx-auto max-w-[1240px] px-5 sm:px-8 py-6 flex flex-wrap items-center justify-between gap-3 mono text-[11px] t-dim">
+      <span id="siteCopyright">© 2026 DP-Archives</span>
+      <span id="siteStatus">SYSTEM STATUS: OPERATIONAL</span>
+    </div>
   </div>
 </footer>
+
+<dialog id="palette" class="dlg" aria-label="Command palette">
+  <div class="dlg-panel">
+    <div class="p-3 hair-bot">
+      <label class="field !bg-transparent" for="paletteInput">
+        <svg class="icon t-dim" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="paletteInput" type="text" autocomplete="off" spellcheck="false" placeholder="Search projects, sections and actions…" role="combobox" aria-expanded="true" aria-controls="paletteList" aria-autocomplete="list" aria-label="Search">
+        <span class="kbd">Esc</span>
+      </label>
+    </div>
+    <ul id="paletteList" class="max-h-[54vh] overflow-auto p-2" role="listbox" aria-label="Results"></ul>
+    <div class="hair-top px-4 py-3 flex items-center justify-between gap-3 mono text-[11px] t-dim">
+      <span><span class="kbd">↑</span> <span class="kbd">↓</span> move · <span class="kbd">↵</span> open · <span class="kbd">Esc</span> close</span>
+      <span id="paletteCount"></span>
+    </div>
+  </div>
+</dialog>
+
+<dialog id="quickLook" class="dlg" aria-label="Project preview">
+  <div class="dlg-panel dlg-panel-lg" id="quickLookBody"></div>
+</dialog>
+
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
 
 <script src="projects.js"></script>
 <script src="site-config.js"></script>

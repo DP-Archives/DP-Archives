@@ -1,61 +1,135 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#0a0a0f">
-<meta name="robots" content="noindex, nofollow">
-<meta name="description" content="Page not found — DP-Archives digital headquarters.">
+<meta name="theme-color" content="#06060b">
+<meta name="robots" content="noindex">
+<meta name="description" content="That page is missing from DP-Archives — but the full archive is one click away.">
 <title>Page not found — DP-Archives</title>
+<link rel="icon" href="logo.png">
+
+<script>
+  document.documentElement.classList.add('js');
+  try {
+    var t = localStorage.getItem('dp_theme');
+    if (!t) t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  } catch (e) {}
+</script>
+
 <script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+          display: ['Sora', 'system-ui', 'sans-serif'],
+          mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace']
+        }
+      }
+    }
+  };
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Fragment+Mono&display=swap" rel="stylesheet">
-<style>
-  html{font-family:'Plus Jakarta Sans',system-ui,sans-serif;color-scheme:dark;-webkit-tap-highlight-color:transparent}
-  body{touch-action:manipulation}
-  .grain{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E")}
-  h1,h2{text-wrap:balance}
-  @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="theme.css">
 </head>
-<body class="bg-[#0a0a0f] text-zinc-100 antialiased min-h-screen flex flex-col">
-<div class="fixed inset-0 -z-10 grain" aria-hidden="true"></div>
+<body class="antialiased">
 
-<header class="sticky top-0 z-40 backdrop-blur-xl bg-[#0a0a0f]/70 border-b border-white/5">
-  <div class="max-w-[1200px] mx-auto px-6 h-16 flex items-center justify-between">
-    <a href="/" class="flex items-center gap-3 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400/70">
-      <span class="w-9 h-9 rounded-xl bg-white p-1.5 flex items-center justify-center">
-        <img src="/logo.png" width="36" height="36" class="w-full h-full object-contain" alt="DP-Archives logo">
+<a class="skip" href="#notfound">Skip to content</a>
+
+<div class="bg-layer" aria-hidden="true">
+  <div class="bg-grid"></div>
+  <div class="bg-blob b1"></div>
+  <div class="bg-blob b2"></div>
+  <div class="bg-blob b3"></div>
+  <div class="bg-noise"></div>
+  <div class="bg-vignette"></div>
+</div>
+
+<header class="site-header">
+  <div class="mx-auto max-w-[1240px] px-5 sm:px-8 h-16 flex items-center gap-3">
+    <a href="index.html" class="flex items-center gap-3 shrink-0" aria-label="DP-Archives home">
+      <span class="w-9 h-9 rounded-xl bg-white p-1.5 grid place-items-center ring-1 ring-black/10">
+        <img src="logo.png" width="36" height="36" class="w-full h-full object-contain" alt="">
       </span>
-      <span>
-        <span class="block font-semibold leading-none" translate="no">DP-Archives</span>
-        <span class="block text-xs text-zinc-400 mt-0.5" translate="no">Digital Headquarters</span>
+      <span class="leading-none">
+        <span class="block font-semibold tracking-tight" translate="no">DP-Archives</span>
+        <span class="block text-[11px] t-dim mt-1" translate="no">Digital Headquarters</span>
       </span>
     </a>
-    <nav class="text-sm text-zinc-300" aria-label="Primary">
-      <a href="/#projects" class="px-3 py-2 rounded-lg hover:text-white hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400/70 transition-colors">Projects</a>
-    </nav>
+    <div class="ml-auto flex items-center gap-2">
+      <button id="paletteBtn" type="button" class="btn btn-ghost btn-sm" aria-haspopup="dialog" aria-keyshortcuts="k">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        Search
+      </button>
+      <button id="themeBtn" type="button" class="btn btn-ghost btn-icon" aria-label="Switch colour theme" title="Switch theme">
+        <svg class="icon-lg icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+      </button>
+    </div>
   </div>
 </header>
 
-<main class="flex-1 flex items-center">
-  <section class="max-w-[1200px] w-full mx-auto px-6 py-24 text-center">
-    <p class="font-mono text-xs text-zinc-500 mb-3" translate="no">404 — ARCHIVE ENTRY NOT FOUND</p>
-    <h1 class="text-[clamp(32px,5vw,56px)] font-bold tracking-tight">This page drifted out of the archive.</h1>
-    <p class="text-zinc-400 mt-4 max-w-xl mx-auto">The link may be outdated, or the project was renamed or removed. Everything that exists is still listed on the homepage.</p>
-    <div class="mt-8 flex gap-3 flex-wrap justify-center">
-      <a href="/" class="px-5 py-3 rounded-xl bg-white text-black font-medium hover:bg-zinc-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 transition-colors">Back to Homepage</a>
-      <a href="/#projects" class="px-5 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400/70 transition-colors">Browse All Projects</a>
-    </div>
-  </section>
+<main id="notfound" class="mx-auto max-w-[1240px] px-5 sm:px-8 pt-24 pb-20 text-center">
+  <p class="eyebrow">404 — archive entry not found</p>
+  <h1 class="h1 mt-6 text-balance">This page drifted<br class="hidden sm:block"> out of the archive.</h1>
+  <p class="lede mt-6 max-w-xl mx-auto">The link may be outdated, or the project was renamed or removed. Everything that still exists is listed in the archive — and it is one search away.</p>
+
+  <div class="mt-9 flex flex-wrap items-center justify-center gap-3">
+    <a href="index.html" class="btn btn-primary btn-lg">
+      Back to the hub
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+    <a href="index.html#projects" class="btn btn-ghost btn-lg">Browse all projects</a>
+    <button type="button" class="btn btn-quiet btn-lg" data-open-palette>
+      <span class="kbd" data-mod>Ctrl</span><span class="kbd">K</span>
+      <span class="t-soft">search everything</span>
+    </button>
+  </div>
+
+  <div class="mt-20 text-left">
+    <p class="eyebrow text-center">Popular right now</p>
+    <div id="suggest" class="mt-7 grid sm:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+  </div>
 </main>
 
-<footer class="border-t border-white/5">
-  <div class="max-w-[1200px] mx-auto px-6 py-8 text-sm text-zinc-500 flex flex-wrap items-center justify-between gap-3">
-    <p>© 2026 <span translate="no">DP-Archives</span> — Built with curiosity</p>
-    <p class="font-mono text-xs" translate="no">SYSTEM STATUS: OPERATIONAL</p>
+<footer class="site-footer">
+  <div class="hair-top">
+    <div class="mx-auto max-w-[1240px] px-5 sm:px-8 py-6 flex flex-wrap items-center justify-between gap-3 mono text-[11px] t-dim">
+      <span id="siteCopyright">© 2026 DP-Archives</span>
+      <span id="siteStatus">SYSTEM STATUS: OPERATIONAL</span>
+    </div>
   </div>
 </footer>
+
+<dialog id="palette" class="dlg" aria-label="Command palette">
+  <div class="dlg-panel">
+    <div class="p-3 hair-bot">
+      <label class="field !bg-transparent" for="paletteInput">
+        <svg class="icon t-dim" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="paletteInput" type="text" autocomplete="off" spellcheck="false" placeholder="Search projects, sections and actions…" role="combobox" aria-expanded="true" aria-controls="paletteList" aria-autocomplete="list" aria-label="Search">
+        <span class="kbd">Esc</span>
+      </label>
+    </div>
+    <ul id="paletteList" class="max-h-[54vh] overflow-auto p-2" role="listbox" aria-label="Results"></ul>
+    <div class="hair-top px-4 py-3 flex items-center justify-between gap-3 mono text-[11px] t-dim">
+      <span><span class="kbd">↑</span> <span class="kbd">↓</span> move · <span class="kbd">↵</span> open · <span class="kbd">Esc</span> close</span>
+      <span id="paletteCount"></span>
+    </div>
+  </div>
+</dialog>
+
+<dialog id="quickLook" class="dlg" aria-label="Project preview">
+  <div class="dlg-panel dlg-panel-lg" id="quickLookBody"></div>
+</dialog>
+
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<script src="projects.js"></script>
+<script src="site-config.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
