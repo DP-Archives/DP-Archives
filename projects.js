@@ -82,7 +82,7 @@ window.DP_PROJECTS = [
     "tech": [],
     "featured": false,
     "updated": "2026-09-27",
-    "url": "https://commerce-forge.vercel.app",
+    "url": "https://commerce-forge-eight.vercel.app",
     "github": "",
     "preview": "",
     "features": [],
